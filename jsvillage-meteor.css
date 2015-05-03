@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  /*
+  background-image: url('http://www.georgebenainous.com/web/code/layout_grid.gif');
+  */
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body { font-family: sans-serif; }
+
+.packery {
+  background: #FDD;
+  background: hsla(45, 100%, 40%, 0.2);
+}
+
+/* clearfix */
+.packery:after {
+  content: ' ';
+  display: block;
+  clear: both;
+}
+
+article {
+  float: left;
+  position: relative;
+}
+
+article:hover {
+  border-color: white;
+  cursor: move;
+}
+
+article.is-dragging,
+article.is-positioning-post-drag {
+  border-color: white;
+  background: #09F;
+  z-index: 2;
+}
+
+article .bottom-bar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 40px;
+  background-color: hsla(0, 0%, 0%, 0.3);
+}
+
+article .content-mask {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  background-color: black;
+}
+
+article .content-mask.active {
+  display: block;
+}
+
+article .content {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  left: 3px;
+  bottom: 40px;
+  background-color: hsla(0, 0%, 100%, 0.7);
+  overflow: auto;
+}
+
+article .content iframe {
+  width: 100%;
+  height: 100%;
+}
+
+article .footer-bar {
+  position: absolute;
+  height: 34px;
+  right: 3px;
+  left: 3px;
+  bottom: 3px;
+}
+
+article .footer-bar span {
+  vertical-align: middle;
+}

@@ -1,0 +1,30 @@
+<body>
+  <script>
+    function randomColor() {
+      return '#'+Math.floor(Math.random()*16777215).toString(16);
+    }
+    Template.publish.events({
+      "submit .publish-widget": function(event) {
+        Widgets.insert({
+          height: 4,
+          width: 4,
+          color: randomColor(),
+          url: event.target.url.value,
+          name: event.target.name.value
+        });
+      }
+    });
+  </script>
+</body>
+
+<template name="publish">
+  <h1>Publish Your App</h1>
+  <form class="publish-widget">
+    <label for="name">Name</label>
+    <input name="name" id="name" type="text" />
+    <label for="url">Url</label>
+    <input name="url" id="url" type="text" />
+
+    <input type="submit" value="Publish" />
+  </form>
+</template>

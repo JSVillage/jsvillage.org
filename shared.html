@@ -1,0 +1,55 @@
+<body>
+  <script>
+    Template.shared.helpers({
+      widgets: Widgets.find()
+    });
+
+    Template.widget.helpers({
+      toPx: function(cells) {return cells * 80}
+    });
+
+    Template.shared.onRendered(function() {
+      var $container = this.$('#container').packery({
+        itemSelector: 'article',
+        columnWidth: 80,
+        rowHeight: 80
+      });
+
+      var $items = $container.find('article');
+      var $itemMasks = $container.find('article .content-mask');
+      $items.draggable({
+        start: function() {
+          $itemMasks.addClass('active');
+        },
+        stop: function() {
+          $itemMasks.removeClass('active');
+        }
+      });
+      $items.resizable({
+        grid: 80,
+        stop: function (event, ui) {
+          $container.packery();
+        }
+      });
+      $container.packery('bindUIDraggableEvents', $items);
+    });
+  </script>
+</body>
+
+<template name="shared">
+  <div id="container">
+    {{#each widgets}}
+      {{> widget}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="widget">
+  <article style="width: {{toPx width}}px; height: {{toPx height}}px; background-color: {{color}};">
+    <div class="content-mask"></div>
+    <div class="content"><iframe src="{{url}}"></iframe></div>
+    <div class="footer-bar">
+      <span>{{name}}</span>
+    </div>
+  </article>
+</template>

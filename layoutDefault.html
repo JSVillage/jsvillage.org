@@ -1,0 +1,31 @@
+<body>
+  <script>
+    Template.layoutDefault.helpers({
+      links: [
+        { url: 'shared', text: "Shared Apps" },
+        { url: 'mine', text: "My Apps" },
+        { url: 'publish', text: "Publish an App" },
+        { url: 'welcome', text: "Why are we here?" }
+      ]
+    });
+  </script>
+</body>
+
+<template name="layoutDefault">
+  <header>
+    <h1>JSVillage.org</h1>
+    <nav>
+      <ul>
+        {{#each links}}
+          {{> navlink}}
+        {{/each}}
+      </ul>
+    </nav>
+  </header>
+  {{> yield}}
+</template>
+
+<template name="navlink">
+  <li><a href="{{url}}">{{text}}</a></li>
+</template>
+
