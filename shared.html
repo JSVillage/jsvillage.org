@@ -9,29 +9,32 @@
     });
 
     Template.shared.onRendered(function() {
-      var $container = this.$('#container').packery({
-        itemSelector: 'article',
-        columnWidth: 80,
-        rowHeight: 80
-      });
+      $((function() {
+        var $container = this.$('#container').packery({
+          itemSelector: 'article',
+          columnWidth: 80,
+          rowHeight: 80
+        });
 
-      var $items = $container.find('article');
-      var $itemMasks = $container.find('article .content-mask');
-      $items.draggable({
-        start: function() {
-          $itemMasks.addClass('active');
-        },
-        stop: function() {
-          $itemMasks.removeClass('active');
-        }
-      });
-      $items.resizable({
-        grid: 80,
-        stop: function (event, ui) {
-          $container.packery();
-        }
-      });
-      $container.packery('bindUIDraggableEvents', $items);
+        var $items = $container.find('article');
+        console.log('items:', $items);
+        var $itemMasks = $container.find('article .content-mask');
+        $items.draggable({
+          start: function() {
+            $itemMasks.addClass('active');
+          },
+          stop: function() {
+            $itemMasks.removeClass('active');
+          }
+        });
+        $items.resizable({
+          grid: 80,
+          stop: function (event, ui) {
+            $container.packery();
+          }
+        });
+        $container.packery('bindUIDraggableEvents', $items);
+      }).bind(this));
     });
   </script>
 </body>
